@@ -42,7 +42,10 @@ public class Main {
 		
 		//adicionando servidor na biblioteca
 		library.addEmployee(servidor1);
-		//System.out.println(library.getEmployees());
+		for (Employee e : library.getEmployees()) {
+			System.out.println(e.getName());
+		}
+		
 
 	}
 

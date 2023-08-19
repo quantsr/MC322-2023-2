@@ -54,11 +54,10 @@ public class Library {
 	/*
 	 * TO DO
 	 */
-	//public ArrayList<Employee> getEmployees()
-	/*
-	 * TO DO
-	 */
-
+	public ArrayList<Employee> getEmployees(){
+		return employees;
+	}
+	
 	//Setters
 	public void setName(String name) {
 		this.name = name;
@@ -151,6 +150,8 @@ public class Library {
 	/*
 	 * TO DO
 	 */
+
+	
 
 	
 }
