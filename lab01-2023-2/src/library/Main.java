@@ -12,7 +12,7 @@ public class Main {
 		
 		//instanciando Livros
 		Book livro1 = new Book(editora, "Tom Sawyer", "Infantil", "Mark Twain", 1973, true);
-		Book livro2 = new Book(editora, "Tom Sawyer II: A ameaça Fantasma", "Infantil", "Mark Twain", 2023, true);
+		Book livro2 = new Book(editora, "Tom Sawyer 2: A ameaça Fantasma", "Infantil", "Mark Twain", 2023, true);
 		Book livro3 = new Book();
 	
 		//adicionando livros na biblioteca
@@ -21,7 +21,7 @@ public class Main {
 		library.addBook(livro3);
 		
 		//adicionando livro ja existente
-		System.out.println("\nAdicionando livro ja existente na bilioteca:");
+		System.out.println("\nAdicionando livro ja existente na biblioteca:");
 		library.addBook(livro1);		
 		
 		//listando livros
