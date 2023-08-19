@@ -81,4 +81,23 @@ public class User {
 		//add book to the list
 		books.add(book);
 	}
+	
+	public void removeBook(int id) {
+		//check if list is empty
+		if(books.isEmpty()) {
+			System.out.println("A lista de livros se encontra vazia no momento.");
+			return;
+		}
+		else {
+			for(Book b : books) {
+				//search book in list with id
+				if(b.getId() == id) {
+					books.remove(books.indexOf(b));
+					return;
+				}
+			}
+			System.out.println("Não foi possivel encontrar livro de id " + id + " emprestado pelo usuario. Operação Abortada");
+			return;
+		}
+	}
 }
