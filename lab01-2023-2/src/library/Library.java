@@ -115,7 +115,7 @@ public class Library {
 					return;
 				}
 			}
-			System.out.println("Não foi possivel encontrar livro de id " + id + " na biblioteca. operação Abortada");
+			System.out.println("Não foi possivel encontrar livro de id " + id + " na biblioteca. Operação Abortada");
 			return;
 		}
 	}
@@ -146,9 +146,24 @@ public class Library {
 	}
 
 	//remove employee
-	/*
-	 * TO DO
-	 */
+	public void removeEmployee(int id) {
+		//check if list is empty
+		if(employees.isEmpty()) {
+			System.out.println("A lista de servidores se encontra vazia no momento.");
+			return;
+		}
+		else {
+			for(Employee e : employees) {
+				//search employee in list with id
+				if(e.getId() == id) {
+					employees.remove(employees.indexOf(e));
+					return;
+				}
+			}
+			System.out.println("Não foi possivel encontrar servidor de id " + id + " na biblioteca. Operação Abortada");
+			return;
+		}
+	}
 
 	
 

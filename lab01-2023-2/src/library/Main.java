@@ -45,8 +45,15 @@ public class Main {
 		for (Employee e : library.getEmployees()) {
 			System.out.println(e.getName());
 		}
-		
 
+		//removendo servidor da biblioteca
+		library.removeEmployee(777);
+		if(library.getEmployees().isEmpty()){
+			System.out.println("Lista vazia.");
+		}
+
+		//removendo servidor nao existente da biblioteca
+		library.removeEmployee(999);
 	}
 
 }
