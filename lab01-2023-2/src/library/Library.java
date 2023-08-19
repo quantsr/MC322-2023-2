@@ -50,10 +50,9 @@ public class Library {
 	public int getMaxCapacity() {
 		return max_capacity;
 	}
-	//public ArrayList<Book> getBooks()
-	/*
-	 * TO DO
-	 */
+	public ArrayList<Book> getBooks(){
+		return books;
+	}
 	public ArrayList<Employee> getEmployees(){
 		return employees;
 	}
