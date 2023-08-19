@@ -11,6 +11,7 @@ public class Library {
 	private int max_capacity = 30;
 	private ArrayList<Book> books = new ArrayList<Book>();
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
+	private ArrayList<User> users = new ArrayList<User>();
 	
 	
 	//Construtor
@@ -141,7 +142,7 @@ public class Library {
 				return;
 			}
 		}
-		//add book to the list
+		//add employee to the list
 		employees.add(employee);
 	}
 
@@ -165,7 +166,59 @@ public class Library {
 		}
 	}
 
+	//add user to the library
+	public void addUser(User user){
+		//search for id
+		for(User e : users){
+			//check if user is already inside the list
+			if(e.getId() == user.getId()){
+				System.out.println("O usuario de ID " + e.getId() + " ja se encontra cadastrado no sistema. Operação abortada.");
+				return;
+			}
+		}
+		//add user to the list
+		users.add(user);
+	}
 	
+	//remove user
+	public void removeUser(int id) {
+		//check if list is empty
+		if(users.isEmpty()) {
+			System.out.println("A lista de usuarios se encontra vazia no momento.");
+			return;
+		}
+		else {
+			for(User e : users) {
+				//search user in list with id
+				if(e.getId() == id) {
+					users.remove(users.indexOf(e));
+					return;
+				}
+			}
+			System.out.println("Não foi possivel encontrar usuario de id " + id + " na biblioteca. Operação Abortada");
+			return;
+		}
+	}
 
+	public void addRent (int idUser, int idBook) {
+		//search for id
+		for(User e : users){
+			//check if user is already inside the list
+			if(e.getId() == idUser) {
+				//search for book
+				for (Book f : books) {
+					//check if book is already inside the list
+					if (f.getId() == idBook) {
+						//change flag in library books
+						f.setAvailable(false);	
+						//change flag in users
+						e.setRent(true);
+						//add book to user
+						e.addBook(f);
+					}
+				}
+			}
+		}
+	}
 	
 }

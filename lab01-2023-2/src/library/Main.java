@@ -54,6 +54,16 @@ public class Main {
 
 		//removendo servidor nao existente da biblioteca
 		library.removeEmployee(999);
+
+		//#################################//
+		User usuario1 = new User("Max", "exemplo@gmail.com", 241957, "1111-1111", "06988005404", "Rua B", false);
+
+		library.addUser(usuario1);
+
+		library.addRent(241957, 1);
+
+		System.out.println(usuario1.books.get(0).getName());
+
 	}
 
 }
