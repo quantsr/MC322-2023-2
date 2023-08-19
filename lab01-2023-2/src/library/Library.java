@@ -10,6 +10,7 @@ public class Library {
 	
 	private int max_capacity = 30;
 	private ArrayList<Book> books = new ArrayList<Book>();
+	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	
 	
 	//Construtor
@@ -49,7 +50,15 @@ public class Library {
 	public int getMaxCapacity() {
 		return max_capacity;
 	}
-	
+	//public ArrayList<Book> getBooks()
+	/*
+	 * TO DO
+	 */
+	//public ArrayList<Employee> getEmployees()
+	/*
+	 * TO DO
+	 */
+
 	//Setters
 	public void setName(String name) {
 		this.name = name;
@@ -124,6 +133,24 @@ public class Library {
 		}
 	}
 	
+	//add employee to library
+	public void addEmployee(Employee employee){
+		//search for id
+		for(Employee e : employees){
+			//check if employee is already inside the list
+			if(e.getId() == employee.getId()){
+				System.out.println("O servidor de ID " + e.getId() + " ja se encontra cadastrado no sistema. Operação abortada.");
+				return;
+			}
+		}
+		//add book to the list
+		employees.add(employee);
+	}
+
+	//remove employee
+	/*
+	 * TO DO
+	 */
 
 	
 }

@@ -37,6 +37,13 @@ public class Main {
 		System.out.println("\nRemovendo livro de id 9001:");
 		library.removeBook(9001);
 
+		//instanciando servidor
+		Employee servidor1 = new Employee("Marcos", "exemplo@gmail.com", 777, "9999-9999", "031.830.200-41", "Rua A");
+		
+		//adicionando servidor na biblioteca
+		library.addEmployee(servidor1);
+		//System.out.println(library.getEmployees());
+
 	}
 
 }
