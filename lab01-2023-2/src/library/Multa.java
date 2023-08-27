@@ -3,14 +3,14 @@ package library;
 public class Multa {
     private Membro usuario;  //composição
     private Emprestimo emprestimoRelacionado; //associação
-    private boolean situaçãoMulta;
-    private Float valor;
+    private boolean pago;
+    private float valor;
 
     
-    public Multa(Membro usuario, Emprestimo emprestimoRelacionado, boolean situaçãoMulta, Float valor) {
+    public Multa(Membro usuario, Emprestimo emprestimoRelacionado, boolean pago, float valor) {
         this.usuario = usuario;
         this.emprestimoRelacionado = emprestimoRelacionado;
-        this.situaçãoMulta = situaçãoMulta;
+        this.pago = pago;
         this.valor = valor;
     }
     public Membro getUsuario() {
@@ -25,16 +25,16 @@ public class Multa {
     public void setEmprestimoRelacionado(Emprestimo emprestimoRelacionado) {
         this.emprestimoRelacionado = emprestimoRelacionado;
     }
-    public boolean isSituaçãoMulta() {
-        return situaçãoMulta;
+    public boolean isPago() {
+        return pago;
     }
-    public void setSituaçãoMulta(boolean situaçãoMulta) {
-        this.situaçãoMulta = situaçãoMulta;
+    public void setPago(boolean pago) {
+        this.pago = pago;
     }
-    public Float getValor() {
+    public float getValor() {
         return valor;
     }
-    public void setValor(Float valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 }

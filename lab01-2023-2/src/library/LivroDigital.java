@@ -5,9 +5,9 @@ public class LivroDigital extends ItemMultimidia{
     private int downloads;
 
 
-    public LivroDigital(int id, String nome, String genero, String autor, String ano, Boolean status, int numeroPaginas,
+    public LivroDigital(int id, String nome, String genero, String autor, String ano, Boolean disponivel, int numeroPaginas,
             int downloads) {
-        super(id, nome, genero, autor, ano, status);
+        super(id, nome, genero, autor, ano, disponivel);
         this.numeroPaginas = numeroPaginas;
         this.downloads = downloads;
     }
