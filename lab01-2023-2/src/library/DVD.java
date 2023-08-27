@@ -6,7 +6,7 @@ public class DVD extends ItemMultimidia{
     
 
     
-    public DVD(int id, String nome, String genero, String autor, String ano, Boolean disponivel, String estudio,
+    public DVD(int id, String nome, String genero, String autor, String ano, boolean disponivel, String estudio,
             float tamanhoArquivo) {
         super(id, nome, genero, autor, ano, disponivel);
         this.estudio = estudio;

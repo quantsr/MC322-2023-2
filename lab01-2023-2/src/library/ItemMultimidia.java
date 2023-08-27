@@ -6,9 +6,9 @@ public class ItemMultimidia {
     private String genero;
     private String autor;
     private String ano;
-    private Boolean disponivel;
+    private boolean disponivel;
 
-    public ItemMultimidia(int id, String nome, String genero, String autor, String ano, Boolean disponivel) {
+    public ItemMultimidia(int id, String nome, String genero, String autor, String ano, boolean disponivel) {
         this.id = id;
         this.nome = nome;
         this.genero = genero;
@@ -46,10 +46,10 @@ public class ItemMultimidia {
     public void setAno(String ano) {
         this.ano = ano;
     }
-    public Boolean getDisponivel() {
+    public boolean getDisponivel() {
         return disponivel;
     }
-    public void setDisponivel(Boolean disponivel) {
+    public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
 }

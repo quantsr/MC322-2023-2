@@ -5,7 +5,7 @@ public class CD extends ItemMultimidia{
     private float tamanhoArquivo;
 
     
-    public CD(int id, String nome, String genero, String autor, String ano, Boolean disponivel, String estudio,
+    public CD(int id, String nome, String genero, String autor, String ano, boolean disponivel, String estudio,
             float tamanhoArquivo) {
         super(id, nome, genero, autor, ano, disponivel);
         this.estudio = estudio;
