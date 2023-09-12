@@ -15,9 +15,11 @@ public class Main {
 			//variedade de items
 			int choice = new Random().nextInt(4);
 			//0:LivroFisico, 1:LivroDigital, 2:CD, 3:DVD
+			
+			/*
 			switch(choice){
 				case 0:
-					items.add(new LivroFisico(i, null, null, null, null, true, i+500));
+					items.add(new LivroFisico(i, null, null, null, choice, null, null, null, true, null, i+500, choice, null, false));
 					break;
 				case 1:
 					items.add(new LivroDigital(i, null, null, null, null, true, i+500, 1000+i));
@@ -29,6 +31,7 @@ public class Main {
 					items.add(new DVD(i, null, null, null, null, true, null, (float)4.5));
 					break;
 			}
+			*/
 
 			membros.add(new Membro(i+100, null, null, null, null, null, null));
 		}

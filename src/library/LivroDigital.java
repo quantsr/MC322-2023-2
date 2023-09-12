@@ -1,26 +1,67 @@
 package library;
+import java.time.LocalDate;
 
 public class LivroDigital extends ItemMultimidia{
-    private int numeroPaginas;
-    private int downloads;
+    private String formato;
+    private int qtdLicencas;
+    private String url;
+    private String requisito;
+    private LocalDate disponibilidade;
+    
+    public LivroDigital(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
+            String capa, boolean disponivel, String formato, int qtdLicencas, String url, String requisito,
+            LocalDate disponibilidade) {
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        this.formato = formato;
+        this.qtdLicencas = qtdLicencas;
+        this.url = url;
+        this.requisito = requisito;
+        this.disponibilidade = disponibilidade;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+
+    public int getQtdLicencas() {
+        return qtdLicencas;
+    }
+
+    public void setQtdLicencas(int qtdLicencas) {
+        this.qtdLicencas = qtdLicencas;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getRequisito() {
+        return requisito;
+    }
+
+    public void setRequisito(String requisito) {
+        this.requisito = requisito;
+    }
+
+    public LocalDate getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(LocalDate disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+    
+   
 
 
-    public LivroDigital(int id, String nome, String genero, String autor, String ano, boolean disponivel, int numeroPaginas,
-            int downloads) {
-        super(id, nome, genero, autor, ano, disponivel);
-        this.numeroPaginas = numeroPaginas;
-        this.downloads = downloads;
-    }
-    public int getNumeroPaginas() {
-        return numeroPaginas;
-    }
-    public void setNumeroPaginas(int numeroPaginas) {
-        this.numeroPaginas = numeroPaginas;
-    }
-    public int getDownloads() {
-        return downloads;
-    }
-    public void setDownloads(int downloads) {
-        this.downloads = downloads;
-    }
+   
+    
 }

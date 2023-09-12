@@ -1,26 +1,62 @@
 package library;
 
 public class CD extends ItemMultimidia{
-    private String estudio;
-    private float tamanhoArquivo;
+    private int faixas;
+    private int duracao; //segundos
+    private int copias;
+    private int copiasDisponiveis;
+    private boolean conservado;
+    
+    public CD(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse, String capa,
+            boolean disponivel, int faixas, int duracao, int copias, int copiasDisponiveis, boolean conservado) {
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        this.faixas = faixas;
+        this.duracao = duracao;
+        this.copias = copias;
+        this.copiasDisponiveis = copiasDisponiveis;
+        this.conservado = conservado;
+    }
+
+    public int getFaixas() {
+        return faixas;
+    }
+
+    public void setFaixas(int faixas) {
+        this.faixas = faixas;
+    }
+
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
+    public int getCopias() {
+        return copias;
+    }
+
+    public void setCopias(int copias) {
+        this.copias = copias;
+    }
+
+    public int getCopiasDisponiveis() {
+        return copiasDisponiveis;
+    }
+
+    public void setCopiasDisponiveis(int copiasDisponiveis) {
+        this.copiasDisponiveis = copiasDisponiveis;
+    }
+
+    public boolean isConservado() {
+        return conservado;
+    }
+
+    public void setConservado(boolean conservado) {
+        this.conservado = conservado;
+    }
 
     
-    public CD(int id, String nome, String genero, String autor, String ano, boolean disponivel, String estudio,
-            float tamanhoArquivo) {
-        super(id, nome, genero, autor, ano, disponivel);
-        this.estudio = estudio;
-        this.tamanhoArquivo = tamanhoArquivo;
-    }
-    public String getEstudio() {
-        return estudio;
-    }
-    public void setEstudio(String estudio) {
-        this.estudio = estudio;
-    }
-    public float getTamanhoArquivo() {
-        return tamanhoArquivo;
-    }
-    public void setTamanhoArquivo(float tamanhoArquivo) {
-        this.tamanhoArquivo = tamanhoArquivo;
-    }
+    
 }
