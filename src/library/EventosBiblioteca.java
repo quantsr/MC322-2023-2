@@ -17,7 +17,7 @@ public class EventosBiblioteca {
         LocalDate horario;
         String local;
     }
-    class Exposição{
+    class Exposicao{
         String tema;
         ArrayList<String> expositor = new ArrayList<String>();
         String duracao;
