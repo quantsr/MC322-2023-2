@@ -26,6 +26,6 @@ public class EventosBiblioteca {
     enum TipoDeEvento{
         PALESTRA,
         WORKSHOP,
-        EXPOSIÇÃO
+        EXPOSICAO
     }
 }
