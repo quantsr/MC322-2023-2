@@ -2,13 +2,13 @@ package library;
 
 public class Multimidia {
     class Audio{
-        String nome;
+        CD objCD;
     }
     class Video{
-        //to do
+        DVD objDVD;
     }
     class Software{
-        //to do
+        LivroDigital objLivroDigital;
     }
     enum  FormatoMultimidia{
         AUDIO,
