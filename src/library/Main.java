@@ -37,7 +37,7 @@ public class Main {
 		}
 
 		//relação de agregação com Biblioteca e a coleção de ItemMultimidia.
-		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", items);
+		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", items, membros);
 		
 		//Relação de composição com a Emprestimo e LocalDate. 
 		//LocalDate não faz sentido existir sem um objeto Emprestimo associado a ele.

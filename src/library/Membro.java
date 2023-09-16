@@ -8,19 +8,24 @@ public class Membro {
     private String cpf;
     private String phone;
     private String email;
-    private String endereço;
+    private String endereco;
     private ArrayList<Multa> multas;  //composição
 
     
-    public Membro(int id, String nome, String cpf, String phone, String email, String endereço,
+    public Membro(int id, String nome, String cpf, String phone, String email, String endereco,
             ArrayList<Multa> multas) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.phone = phone;
         this.email = email;
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.multas = multas;
+    }
+    public Membro(int ID){
+        this.id = ID;
+        this.nome = this.cpf = this.phone = this.email = this.endereco = "";
+        this.multas = new ArrayList<Multa>();
     }
     public int getId() {
         return id;
@@ -52,11 +57,11 @@ public class Membro {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
     public ArrayList<Multa> getMultas() {
         return multas;
