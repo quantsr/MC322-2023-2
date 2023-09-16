@@ -1,5 +1,9 @@
 package library;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+
+
 
 
 public class Biblioteca {
@@ -8,11 +12,11 @@ public class Biblioteca {
     private String email;
     private String endereco;
     private String cnpj;
-    private ArrayList<ItemMultimidia> acervo; //Agregação
+    private HashMap<Integer, ItemMultimidia> acervo;
     private ArrayList<Membro> membrosBiblioteca;
     
     public Biblioteca(String nome, String fone, String email, String endereco, String cnpj,
-            ArrayList<ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca) {
+           HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca) {
         this.nome = nome;
         this.fone = fone;
         this.email = email;
@@ -51,10 +55,10 @@ public class Biblioteca {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    public ArrayList<ItemMultimidia> getAcervo() {
+    public HashMap<Integer, ItemMultimidia> getAcervo() {
         return acervo;
     }
-    public void setAcervo(ArrayList<ItemMultimidia> acervo) {
+    public void setAcervo(HashMap<Integer, ItemMultimidia> acervo) {
         this.acervo = acervo;
     }
     public ArrayList<Membro> getMembros() {
@@ -96,4 +100,23 @@ public class Biblioteca {
         return false;
     }
 
+    public boolean addItem(int ID){
+        ItemMultimidia consulta = acervo.get(ID);
+        if(consulta != null){
+            System.out.println("O livro de ID "+ID+" ja se encontra no acervo. operacao abortada.");
+            return false;
+        }else{
+            acervo.put(ID, new ItemMultimidia(ID));
+            System.out.println("Item de ID "+ID+" cadastrado com sucesso.");
+            return true;
+        }
+    }
+    public boolean removeItem(int ID){
+        ItemMultimidia consulta = acervo.remove(ID);
+        if(consulta == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

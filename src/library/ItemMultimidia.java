@@ -24,6 +24,12 @@ public class ItemMultimidia {
         this.capa = capa;
         this.disponivel = disponivel;
     }
+    public ItemMultimidia(int ID){
+        this.id = ID;
+        this.titulo = this.autor = this.editora = this.genero = this.sinopse = this.capa = "";
+        this.ano = 0;
+        this.disponivel = true;
+    }
 
 
     public int getId() {
