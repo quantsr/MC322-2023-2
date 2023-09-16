@@ -1,4 +1,5 @@
 package library;
+import java.util.ArrayList;
 
 public class ItemMultimidia {
     private int id;
@@ -10,6 +11,7 @@ public class ItemMultimidia {
     private String sinopse;
     private String capa;
     private boolean disponivel;
+    private ArrayList<Comentario> comentarios;
 
     
     public ItemMultimidia(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
@@ -121,5 +123,8 @@ public class ItemMultimidia {
         this.disponivel = disponivel;
     }
 
+    public void addComentario(Comentario comentario){
+        this.comentarios.add(comentario);
+    }
     
 }
