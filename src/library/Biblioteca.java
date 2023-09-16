@@ -1,6 +1,7 @@
 package library;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 
@@ -14,6 +15,7 @@ public class Biblioteca {
     private String cnpj;
     private HashMap<Integer, ItemMultimidia> acervo;
     private ArrayList<Membro> membrosBiblioteca;
+    private HashSet<Emprestimo> emprestimos; 
     
     public Biblioteca(String nome, String fone, String email, String endereco, String cnpj,
            HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca) {
@@ -118,5 +120,15 @@ public class Biblioteca {
         }else{
             return true;
         }
+    }
+    public boolean addEmprestimo(Emprestimo emprestimo){
+        return emprestimos.add(emprestimo);
+    }
+
+    public boolean removeEmprestimo(Emprestimo emprestimo){
+        return emprestimos.remove(emprestimo);
+    }
+    public boolean hasEmprestimo(Emprestimo emprestimo){
+        return emprestimos.contains(emprestimo);
     }
 }
