@@ -8,7 +8,7 @@ public class Multimidia {
         DVD objDVD;
     }
     class Software{
-        LivroDigital objLivroDigital;
+        LivroDigital objLivroDigital; //placeholder
     }
     enum  FormatoMultimidia{
         AUDIO,

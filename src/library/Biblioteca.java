@@ -1,6 +1,7 @@
 package library;
 import java.util.ArrayList;
 
+
 public class Biblioteca {
     private String nome;
     private String fone;
@@ -62,14 +63,16 @@ public class Biblioteca {
     public void setMembros(ArrayList<Membro> membrosBiblioteca) {
         this.membrosBiblioteca = membrosBiblioteca;
     }
-    public boolean addMembro(Membro membro){
+    public boolean addMembro(int ID){
         for(Membro m : membrosBiblioteca){
-            if(m.getId() == membro.getId()){
-                System.out.println("O membro de ID "+membro.getId()+" ja se encontra cadastrado.");
+            if(m.getId() == ID){
+                System.out.println("O membro de ID "+ID+" ja se encontra cadastrado. Operacao abortada.");
                 return false;
             }
         }
+        Membro membro = new Membro(ID);
         membrosBiblioteca.add(membro);
+        System.out.println("Membro de ID "+ID+" adicionado com sucesso.");
         return true;
     }
     public boolean removeMembro(int ID){
@@ -77,10 +80,11 @@ public class Biblioteca {
             if(m.getId() == ID){
                 int index = membrosBiblioteca.indexOf(m);
                 membrosBiblioteca.remove(index);
+                System.out.println("Membro de ID "+ID+" removido com sucesso.");
                 return true;
             }
         }
-        System.out.println("Nao foi possivel remover o membro de ID "+ID);
+        System.out.println("Nao foi possivel remover o membro de ID "+ID+". Operacao abortada.");
         return false;
     }
     public boolean hasMembro(int ID){
