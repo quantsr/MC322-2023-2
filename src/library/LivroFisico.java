@@ -1,7 +1,7 @@
 package library;
 
 public class LivroFisico extends ItemMultimidia {
-    private String Isbn;
+    private String isbn;
     private int edicao;
     private int copias;
     private String local;
@@ -10,7 +10,7 @@ public class LivroFisico extends ItemMultimidia {
     public LivroFisico(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
             String capa, boolean disponivel, String isbn, int edicao, int copias, String local, boolean conservado) {
         super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
-        Isbn = isbn;
+        isbn = isbn;
         this.edicao = edicao;
         this.copias = copias;
         this.local = local;
@@ -18,11 +18,11 @@ public class LivroFisico extends ItemMultimidia {
     }
 
     public String getIsbn() {
-        return Isbn;
+        return isbn;
     }
 
     public void setIsbn(String isbn) {
-        Isbn = isbn;
+        isbn = isbn;
     }
 
     public int getEdicao() {

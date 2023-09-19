@@ -10,7 +10,7 @@ public class Multimidia {
     class Software{
         LivroDigital objLivroDigital; //placeholder
     }
-    enum  FormatoMultimidia{
+    enum  formatoMultimidia{
         AUDIO,
         VIDEO,
         SOFTWARE

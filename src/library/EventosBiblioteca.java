@@ -60,7 +60,7 @@ public class EventosBiblioteca {
         String duracao;
         String local;
     }
-    enum TipoDeEvento{
+    enum tipoDeEvento{
         PALESTRA,
         WORKSHOP,
         EXPOSICAO
