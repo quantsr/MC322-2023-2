@@ -1,33 +1,43 @@
 package library;
 
-import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EventosBiblioteca {
     
-    public static void membrosEVentos (String[] args) {
-        
-        List<List<String>> eventos; //cria a lista de eventos
-        //adiciona um novo evento
-        eventoUm = new ArrayList<List<String>>();
-        //adiciona uma pessoa ao eventoUm
-        eventoUm.get(0).add(new String("João Melo"));
-        eventoUm.get(1).add(new String("Max Arruda"));
-        eventoUm.get(2).add(new String("Miguel Vargas"));
+    private ArrayList<Membro> membrosBiblioteca;
 
-        // Acessando membros por posições
-        String eventos = eventos.get(1);
-        for (String i = 0; i < eventos.size(); i++){
-            eventos.get(i, membros.get(i));
-        } 
-
-        // Iterando pela lista
-        for (String evento : eventos) {
-            for (String membro : membros) {
-                System.out.println(evento, membro);
+    public boolean addMembro(int ID){
+        for(Membro m : membrosBiblioteca){
+            if(m.getId() == ID){
+                System.out.println("O membro de ID "+ID+" ja se encontra cadastrado. Operacao abortada.");
+                return false;
             }
         }
+        Membro membro = new Membro(ID);
+        membrosBiblioteca.add(membro);
+        System.out.println("Membro de ID "+ID+" adicionado com sucesso.");
+        return true;
+    }
+    public boolean removeMembro(int ID){
+        for(Membro m : membrosBiblioteca){
+            if(m.getId() == ID){
+                int index = membrosBiblioteca.indexOf(m);
+                membrosBiblioteca.remove(index);
+                System.out.println("Membro de ID "+ID+" removido com sucesso.");
+                return true;
+            }
+        }
+        System.out.println("Nao foi possivel remover o membro de ID "+ID+". Operacao abortada.");
+        return false;
+    }
+    public boolean hasMembro(int ID){
+        for(Membro m : membrosBiblioteca){
+            if(m.getId() == ID){
+                return true;
+            }
+        }
+        return false;
     }
 
     class Palestra{

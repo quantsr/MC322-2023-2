@@ -1,38 +1,19 @@
 package library;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.time.LocalDate;
 
-public class Reserva {
+public class Reserva implements Comparable<Reserva>{
     private ItemMultimidia item; //associação
     private Membro donoReserva; //associação
-    private LocalDate diaRetirada; //composição
-
-    public static void listaReservas (String[] args) {
-        List<String> reservas = new LinkedList<>();
-
-        // Adicionando reservas
-        reservas.add("O Hobbit, João Pedro Melo, 20/09");
-        reservas.add("Uma breve historia do tempo, Max Arruda, 21/09");
-        reservas.add("Introdução a algoritmos, Miguel Vargas, 22/09");
-
-        // Acessando reservas por posições
-        String reservas = reservas.get(1); //"O Hobbit"
-        String reservas = reservas.get(2); //"Uma breve historia do tempo"
-        String reservas = reservas.get(3); //"Introdução a algoritimos"
-
-        //Iterando pela lista
-        for (String reserva : reservas) {
-            System.out.println(reserva);
-        }
-    }   
+    private LocalDate diaRetirada; //composição 
     
     public Reserva(ItemMultimidia item, Membro donoReserva, LocalDate diaRetirada) {
         this.item = item;
         this.donoReserva = donoReserva;
         this.diaRetirada = diaRetirada;
     }
+
+    //getters and setters
     public ItemMultimidia getItem() {
         return item;
     }
@@ -50,5 +31,22 @@ public class Reserva {
     }
     public void setDiaRetirada(LocalDate diaRetirada) {
         this.diaRetirada = diaRetirada;
+    }
+
+    @Override
+    public int compareTo(Reserva o) {
+        // TODO Auto-generated method stub
+        if(this.getItem().getId() == o.getItem().getId() && this.getDiaRetirada().isEqual(o.getDiaRetirada()) && this.getDonoReserva().getId() == o.getDonoReserva().getId()){
+            return 0;
+        }
+        if(this.getItem().getId() == o.getItem().getId() && this.getDiaRetirada().isAfter(o.getDiaRetirada()) && this.getDonoReserva().getId() == o.getDonoReserva().getId()){
+            return 1;
+        }
+        if(this.getItem().getId() == o.getItem().getId() && this.getDiaRetirada().isBefore(o.getDiaRetirada()) && this.getDonoReserva().getId() == o.getDonoReserva().getId()){
+            return -1;
+        }
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    
+        
     }
 }

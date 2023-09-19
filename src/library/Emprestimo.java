@@ -17,25 +17,7 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
         this.usuario = usuario;
 
-        public static void historicoEmprestimo (String[] args) {
-            List<String> historicoEmprestimo = new LinkedList<>();
-
-            // Adicionando historicoEmprestimo
-            historicoEmprestimo.add("O Hobbit, João Pedro Melo, 20/09");
-            historicoEmprestimo.add("Uma breve historia do tempo, Max Arruda, 21/09");
-            historicoEmprestimo.add("Introdução a algoritmos, Miguel Vargas, 22/09");
-
-            // Acessando o historico por posições
-            String historicoEmprestimo = historicoEmprestimo.get(1); //"O Hobbit"
-            String historicoEmprestimo = historicoEmprestimo.get(2); //"Uma breve historia do tempo"
-            String historicoEmprestimo = historicoEmprestimo.get(3); //"Introduçao a algoritmos"
-
-            //Iterando pela lista
-            for (String historico : historicoEmprestimo) {
-                System.out.println(historico);
-            }
-        }
-
+        
     }
     public ItemMultimidia getItem() {
         return item;

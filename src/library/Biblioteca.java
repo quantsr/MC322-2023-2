@@ -2,9 +2,8 @@ package library;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-
-
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Biblioteca {
@@ -16,6 +15,8 @@ public class Biblioteca {
     private HashMap<Integer, ItemMultimidia> acervo;
     private ArrayList<Membro> membrosBiblioteca;
     private HashSet<Emprestimo> emprestimos; 
+    private List<Reserva> reservas = new LinkedList<>();
+    private HashSet<Categoria> categorias; 
     
     public Biblioteca(String nome, String fone, String email, String endereco, String cnpj,
            HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca) {
@@ -124,11 +125,55 @@ public class Biblioteca {
     public boolean addEmprestimo(Emprestimo emprestimo){
         return emprestimos.add(emprestimo);
     }
-
     public boolean removeEmprestimo(Emprestimo emprestimo){
         return emprestimos.remove(emprestimo);
     }
     public boolean hasEmprestimo(Emprestimo emprestimo){
         return emprestimos.contains(emprestimo);
+    }
+    public boolean addReserva(Reserva reserva){
+        for (Reserva objReserva : reservas) {
+            if (objReserva.compareTo(reserva) == 0)
+            {
+                System.out.println("A reserva ja se encontra na lista de reservas. Abortando operacao.");
+                return false;
+            } 
+        }
+        reservas.add(reserva);
+        return true;
+    }
+
+    public boolean removeReserva(Reserva reserva){
+        for (Reserva objReserva : reservas) {
+            if (objReserva.compareTo(reserva) == 0)
+            {
+                reservas.remove(reserva);
+                return true;
+            } 
+        }
+        System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
+        return false;
+    }
+
+    public boolean hasReserva(Reserva reserva){
+        for (Reserva objReserva : reservas) {
+            if (objReserva.compareTo(reserva) == 0)
+            {
+                System.out.println("A reserva ja se encontra na lista de reservas. Abortando operacao.");
+                return true;
+            } 
+        }
+        System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
+        return false;
+
+    }
+    public boolean addCategoria(Categoria categoria){
+        return categorias.add(categoria);
+    }
+    public boolean removeCategoria(Categoria categoria){
+        return categorias.remove(categoria);
+    }
+    public boolean hasCategoria(Categoria categoria){
+        return categorias.contains(categoria);
     }
 }

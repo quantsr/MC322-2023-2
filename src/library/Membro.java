@@ -1,6 +1,8 @@
 package library;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Membro {
     private int id;
@@ -10,10 +12,11 @@ public class Membro {
     private String email;
     private String endereco;
     private ArrayList<Multa> multas;  //composição
+    private List<Emprestimo> emprestimos = new LinkedList<>();
 
     
     public Membro(int id, String nome, String cpf, String phone, String email, String endereco,
-            ArrayList<Multa> multas) {
+            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -21,6 +24,7 @@ public class Membro {
         this.email = email;
         this.endereco = endereco;
         this.multas = multas;
+        this.emprestimos = emprestimos;
     }
     public Membro(int ID){
         this.id = ID;
@@ -68,5 +72,11 @@ public class Membro {
     }
     public void setMultas(ArrayList<Multa> multas) {
         this.multas = multas;
+    }
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
     }
 }
