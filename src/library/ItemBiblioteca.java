@@ -22,25 +22,35 @@ public class ItemBiblioteca<T extends ItemMultimidia> {
     }
 
     public void reservarItem(T item){
-        /*checar se o item ja se encontra reservado em itensReservados(checa pelo ID do item)
-        *
-        * to do
-        *
-        */
-        //se nao
-        this.itensReservados.add(item);
-        this.numeroDeItensReservados++;
+        //checar se o item ja se encontra reservado em itensReservados(checa pelo ID do item)
+        boolean reservado = false;
+        for(T i : this.itensReservados){
+            if(i.getId() == item.getId()){
+                //throw exception later
+                reservado = true;
+                System.out.println("O item de ID "+ item.getId() +" ja se encontra reservado.  Operacao abortada" );
+            }
+        }
+        if(!reservado){
+            this.itensReservados.add(item);
+            this.numeroDeItensReservados++;
+        }
     }
     
     public void emprestarItem(T item){
-        /* checar se o item ja se encontra emprestado itensEmprestados(checa pelo id do item)
-        *
-        * to do
-        *
-        */
-        //se nao
-        this.itensEmprestados.add(item);
-        this.numeroDeItensEmprestados++;
+        // checar se o item ja se encontra emprestado itensEmprestados(checa pelo id do item)
+        boolean emprestado = false;
+        for(T i : this.itensEmprestados){
+            if(i.getId() == item.getId()){
+                //throw exception later
+                emprestado = true;
+                System.out.println("O item de ID "+ item.getId() +" ja se encontra emprestado.  Operacao abortada" );
+            }
+        }
+        if(!emprestado){       
+            this.itensEmprestados.add(item);
+            this.numeroDeItensEmprestados++;
+        }
     }
 
     public void devolverItem(T item){
