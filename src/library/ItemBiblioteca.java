@@ -54,13 +54,36 @@ public class ItemBiblioteca<T extends ItemMultimidia> {
     }
 
     public void devolverItem(T item){
-        for(T i : this.itensEmprestados){
-            if(i.getId() == item.getId()){
-                int index = this.itensEmprestados.indexOf(i);
-                this.itensEmprestados.remove(index);
-                this.numeroDeItensEmprestados--;
-            }
+        if(this.itensEmprestados.removeIf(i -> i.getId() == item.getId())){
+            this.numeroDeItensEmprestados--;
         }
+        else{
+            System.out.println("Item de ID "+item.getId()+ " nao se encontra na lista de emprestados no momento.");
+        }
+    }
+    public ArrayList<T> getItensReservados() {
+        return itensReservados;
+    }
+    public void setItensReservados(ArrayList<T> itensReservados) {
+        this.itensReservados = itensReservados;
+    }
+    public ArrayList<T> getItensEmprestados() {
+        return itensEmprestados;
+    }
+    public void setItensEmprestados(ArrayList<T> itensEmprestados) {
+        this.itensEmprestados = itensEmprestados;
+    }
+    public int getNumeroDeItensEmprestados() {
+        return numeroDeItensEmprestados;
+    }
+    public void setNumeroDeItensEmprestados(int numeroDeItensEmprestados) {
+        this.numeroDeItensEmprestados = numeroDeItensEmprestados;
+    }
+    public int getNumeroDeItensReservados() {
+        return numeroDeItensReservados;
+    }
+    public void setNumeroDeItensReservados(int numeroDeItensReservados) {
+        this.numeroDeItensReservados = numeroDeItensReservados;
     }
 
 }

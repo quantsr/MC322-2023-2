@@ -4,10 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.time.LocalDate;
 
-public class ReservaSala {
+public class ReservaSala extends Recursos{
     private LocalDate dataReserva;
     private LocalDate horaInicio;
     private LocalDate horaFim; 
+
+    public ReservaSala(LocalDate dataReserva, LocalDate horaInicio, LocalDate horaFim, int id) {
+        super(id);
+        this.dataReserva = dataReserva;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+    }
 
     class SalaIndividual{
         boolean temComputador;

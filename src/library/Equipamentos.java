@@ -1,6 +1,10 @@
 package library;
 
-public class Equipamentos {
+public class Equipamentos extends Recursos{
+    public Equipamentos(int id) {
+        super(id);
+    }
+
     class Informatica{
         String modelo;
         String codigoModelo;
