@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import library.Biblioteca;
 import library.Emprestimo;
 import library.ItemMultimidia;
 import library.Multa;
+import library.Reserva;
 
 public class Funcionario extends Membro{
 
@@ -17,7 +19,7 @@ public class Funcionario extends Membro{
         
     }
 
-    public boolean makeEmprestimo(ItemMultimidia item){
+    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
         //checar se limite de emprestimo foi atingido
         if(this.getEmprestimos().size() == 4){
             //throw exception
@@ -44,8 +46,35 @@ public class Funcionario extends Membro{
         
         Emprestimo emprestimo = new Emprestimo(item, dataEmprestimo, dataDevolucao, this);
         this.getEmprestimos().add(emprestimo);
-        return true;
-        
+        item.setDisponivel(false);
+        return library.addEmprestimo(emprestimo);
+    }
+
+    public boolean makeReserva(ItemMultimidia item, Biblioteca library){
+        if(item.isDisponivel()){
+            //throw exception
+            System.out.println("Item se encontra disponivel no momento.");
+            return false;
+        }
+        else{
+            //data de retirada
+            LocalDate dataRetirada = null;
+            for(Emprestimo e : library.getEmprestimos()){
+                if(e.getItem().getId() == item.getId()){
+                    //data retirada nao pode ser a mesma que a data de devolucao para evitar conflitos
+                    dataRetirada = e.getDataDevolucao().plusDays(1);
+                }
+            }
+            if(dataRetirada == null){
+                //throw exception
+                System.out.println("Item nao se encontra na lista de emprestimo da biblioteca");
+                return false;
+            }
+            else{
+                Reserva reserva = new Reserva(item, this, dataRetirada);
+                return library.addReserva(reserva);              
+            }
+        }
     }
     
 }

@@ -71,6 +71,13 @@ public class Biblioteca {
     public void setMembros(ArrayList<Membro> membrosBiblioteca) {
         this.membrosBiblioteca = membrosBiblioteca;
     }
+    public HashSet<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+    public void setEmprestimos(HashSet<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+    
     public boolean addMembro(int ID){
         for(Membro m : membrosBiblioteca){
             if(m.getId() == ID){

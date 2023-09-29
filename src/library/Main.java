@@ -25,7 +25,7 @@ public class Main {
 		
 		LivroFisico livro1 = new LivroFisico(0, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true);
 
-		user1.makeEmprestimo(livro1);
+		user1.makeEmprestimo(livro1, biblioteca);
 		livro1.setCopias(livro1.getCopias()-1);
 		System.out.println(user1);
 	}
