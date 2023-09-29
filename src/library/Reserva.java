@@ -4,9 +4,9 @@ import usuario.*;
 import java.time.LocalDate;
 
 public class Reserva implements Comparable<Reserva>{
-    private ItemMultimidia item; //associação
-    private Membro donoReserva; //associação
-    private LocalDate diaRetirada; //composição 
+    private ItemMultimidia item; 
+    private Membro donoReserva; 
+    private LocalDate diaRetirada; 
     
     public Reserva(ItemMultimidia item, Membro donoReserva, LocalDate diaRetirada) {
         this.item = item;

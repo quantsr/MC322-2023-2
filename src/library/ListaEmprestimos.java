@@ -6,6 +6,12 @@ import java.util.ArrayList;
 public class ListaEmprestimos<T extends Recursos> {
     private ArrayList<T> itensEmprestados;
     private int numeroDeItensEmprestados;
+    
+    public ListaEmprestimos(ArrayList<T> itensEmprestados){
+        this.itensEmprestados = new ArrayList<T>();
+        this.numeroDeItensEmprestados = 0;
+    }
+
     //Getter ItensEmprestados
     public ArrayList<T> getItensEmprestados() {
         return itensEmprestados;
@@ -14,13 +20,6 @@ public class ListaEmprestimos<T extends Recursos> {
     //Setter ItensEmprestados
     public void setItensEmprestados(ArrayList<T> itensEmprestados) {
         this.itensEmprestados = itensEmprestados;
-    }
-
-    
-    
-    public ListaEmprestimos(ArrayList<T> itensEmprestados){
-        this.itensEmprestados = new ArrayList<T>();
-        this.numeroDeItensEmprestados = 0;
     }
     
     //Adciona um emprestimo a lista

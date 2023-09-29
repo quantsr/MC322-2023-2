@@ -1,7 +1,7 @@
 package library;
 
 public class Renovacao {
-    private Emprestimo emprestimo; //associação
+    private Emprestimo emprestimo; 
 
     
     public Renovacao(Emprestimo emprestimo) {

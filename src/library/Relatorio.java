@@ -3,9 +3,9 @@ package library;
 import java.util.ArrayList;
 
 public class Relatorio {
-    private ArrayList<Emprestimo> emprestimos; //agregação
-    private ArrayList<ItemMultimidia> acervo; //agregação
-    private ArrayList<Multa> multas; //agregação
+    private ArrayList<Emprestimo> emprestimos; 
+    private ArrayList<ItemMultimidia> acervo; 
+    private ArrayList<Multa> multas; 
 
     
     public Relatorio(ArrayList<Emprestimo> emprestimos, ArrayList<ItemMultimidia> acervo, ArrayList<Multa> multas) {

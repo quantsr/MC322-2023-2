@@ -4,7 +4,6 @@ public class Comentario {
     int membroId;
     int itemId;
     String texto;
-    //test
     
     public Comentario(int membroId, int itemId, String texto) {
         this.membroId = membroId;
