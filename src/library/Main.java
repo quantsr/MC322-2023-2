@@ -12,7 +12,7 @@ public class Main {
 		ArrayList<Membro> membros = new ArrayList<Membro>();
 
 		for(int i = 0; i<10; i++){
-			membros.add(new Membro(i+100, null, null, null, null, null, null,null));
+			membros.add(new Membro(i+100));
 		}
 
 		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", items, membros);

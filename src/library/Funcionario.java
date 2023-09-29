@@ -1,13 +1,18 @@
 package library;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Funcionario extends Membro{
 
-    public Funcionario(int id, String nome, String cpf, String phone, String email, String endereço,
-            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
-        super(id, nome, cpf, phone, email, endereço, multas, emprestimos);
+    public Funcionario(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
+            ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
+        super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
+        
     }
+
+    
     
 }
