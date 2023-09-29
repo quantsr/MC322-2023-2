@@ -10,6 +10,7 @@ import library.Multa;
 
 public class Graduacao extends Universidade {
 
+    
     public Graduacao(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
             ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
         super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
