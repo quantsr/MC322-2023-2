@@ -1,4 +1,6 @@
 package library;
+import usuario.Membro;
+
 
 public class Multa {
     private Membro usuario;  //composição

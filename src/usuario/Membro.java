@@ -78,4 +78,7 @@ public class Membro {
         this.emprestimos = emprestimos;
     }
     
+    public void makeEmprestimo(Emprestimo emprestimo){
+        
+    }
 }
