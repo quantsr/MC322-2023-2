@@ -16,11 +16,11 @@ public class Biblioteca {
     private HashMap<Integer, ItemMultimidia> acervo;
     private ArrayList<Membro> membrosBiblioteca;
     private HashSet<Emprestimo> emprestimos; 
-    private List<Reserva> reservas = new LinkedList<>();
+    private LinkedList<Reserva> reservas;
     private HashSet<Categoria> categorias; 
     
     public Biblioteca(String nome, String fone, String email, String endereco, String cnpj,
-           HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca) {
+           HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca, HashSet<Emprestimo> emprestimos, LinkedList<Reserva> reservas, HashSet<Categoria> categorias) {
         this.nome = nome;
         this.fone = fone;
         this.email = email;
@@ -28,6 +28,9 @@ public class Biblioteca {
         this.cnpj = cnpj;
         this.acervo = acervo;
         this.membrosBiblioteca = membrosBiblioteca;
+        this.emprestimos = emprestimos;
+        this.reservas = reservas;
+        this.categorias = categorias;
     }
     public String getNome() {
         return nome;
@@ -80,7 +83,7 @@ public class Biblioteca {
     public List<Reserva> getReservas() {
         return reservas;
     }
-    public void setReservas(List<Reserva> reservas) {
+    public void setReservas(LinkedList<Reserva> reservas) {
         this.reservas = reservas;
     }
     
@@ -158,15 +161,22 @@ public class Biblioteca {
     }
 
     public boolean removeReserva(Reserva reserva){
-        for (Reserva objReserva : reservas) {
-            if (objReserva.compareTo(reserva) == 0)
-            {
-                reservas.remove(reserva);
-                return true;
-            }
+        if(reservas.removeIf(i -> i.compareTo(reserva) == 0)){
+            return true;
         }
-        System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
-        return false;
+        else{
+            System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
+            return false;
+        }
+        // for (Reserva objReserva : reservas) {
+        //     if (objReserva.compareTo(reserva) == 0)
+        //     {
+        //         reservas.remove(reserva);
+        //         return true;
+        //     }
+        // }
+        // System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
+        // return false;
     }
 
     public boolean hasReserva(Reserva reserva){

@@ -14,20 +14,21 @@ import library.Reserva;
 public class Funcionario extends Membro{
 
     public Funcionario(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
-            ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
+            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
         super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
         
     }
 
-    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){        
+    @Override
+    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
         //checa se item esta reservado por outra pessoa
-        boolean reservaAutorizada = false;
+        boolean reservado = false;
         for(Reserva r : library.getReservas()){
-            if(r.getDonoReserva().getId() == this.getId()){
-                reservaAutorizada = true;
+            if(r.getItem().getId() == item.getId() && r.getDonoReserva().getId() != this.getId()){
+                reservado = true;
             }
         }
-        if(!reservaAutorizada){
+        if(reservado){
             System.out.println("Item se encontra reservado para outra pessoa no momento.");
             return false;
         }

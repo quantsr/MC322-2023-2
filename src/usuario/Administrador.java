@@ -11,7 +11,7 @@ import library.Multa;
 public class Administrador extends Funcionario{
 
     public Administrador(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
-            ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
+            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
         super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
         
     }

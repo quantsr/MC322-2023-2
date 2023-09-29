@@ -14,11 +14,11 @@ public class Membro {
     private LocalDate dataRegistro; 
 
     private ArrayList<Multa> multas; 
-    private List<Emprestimo> emprestimos;
+    private LinkedList<Emprestimo> emprestimos;
 
     //Constructor
     public Membro(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
-            ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
+            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
         this.nome = nome;
         this.id = id;
         this.endereco = endereco;        
@@ -71,11 +71,19 @@ public class Membro {
     public void setMultas(ArrayList<Multa> multas) {
         this.multas = multas;
     }
-    public List<Emprestimo> getEmprestimos() {
+    public LinkedList<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
-    public void setEmprestimos(List<Emprestimo> emprestimos) {
+    public void setEmprestimos(LinkedList<Emprestimo> emprestimos) {
         this.emprestimos = emprestimos;
+    }
+
+    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
+        return true;
+    }
+
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+        return true;
     }
 
     public String toString(){
@@ -85,6 +93,6 @@ public class Membro {
                 multaPaga++;
             }
         }
-        return getId()+" - "+getNome()+" - Multas: "+getMultas().size()+"("+multaPaga+" pagas) - Emprestimos: "+getEmprestimos().size();
+        return getId()+" - "+getNome()+" - Multas pagas: "+multaPaga+"/"+getMultas().size()+" - Emprestimos: "+getEmprestimos().size();
     }
 }

@@ -2,6 +2,7 @@ package usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import library.Biblioteca;
@@ -13,19 +14,20 @@ import library.Reserva;
 public class Graduacao extends Universidade {
 
     public Graduacao(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
-            ArrayList<Multa> multas, List<Emprestimo> emprestimos) {
+            ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {
         super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
     }
 
+    @Override
     public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
         //checa se item esta reservado por outra pessoa
-        boolean reservaAutorizada = false;
+        boolean reservado = false;
         for(Reserva r : library.getReservas()){
-            if(r.getDonoReserva().getId() == this.getId()){
-                reservaAutorizada = true;
+            if(r.getItem().getId() == item.getId() && r.getDonoReserva().getId() != this.getId()){
+                reservado = true;
             }
         }
-        if(!reservaAutorizada){
+        if(reservado){
             System.out.println("Item se encontra reservado para outra pessoa no momento.");
             return false;
         }
@@ -83,6 +85,21 @@ public class Graduacao extends Universidade {
                 Reserva reserva = new Reserva(item, this, dataRetirada);
                 return library.addReserva(reserva);              
             }
+        }
+    }
+    
+    @Override
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+        if(!this.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            return false;
+        }
+        else if(!library.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            return false;
+        }
+        else{
+            return true;
         }
     }
 
