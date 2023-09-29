@@ -79,6 +79,12 @@ public class Membro {
     }
 
     public String toString(){
-        return getId()+" - "+getNome()+" - Multas: "+getMultas().size()+" - Emprestimos: "+getEmprestimos().size();
+        int multaPaga = 0;
+        for(Multa e : this.getMultas()){
+            if(e.isPago()){
+                multaPaga++;
+            }
+        }
+        return getId()+" - "+getNome()+" - Multas: "+getMultas().size()+"("+multaPaga+" pagas) - Emprestimos: "+getEmprestimos().size();
     }
 }
