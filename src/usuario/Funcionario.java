@@ -19,7 +19,18 @@ public class Funcionario extends Membro{
         
     }
 
-    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
+    public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){        
+        //checa se item esta reservado por outra pessoa
+        boolean reservaAutorizada = false;
+        for(Reserva r : library.getReservas()){
+            if(r.getDonoReserva().getId() == this.getId()){
+                reservaAutorizada = true;
+            }
+        }
+        if(!reservaAutorizada){
+            System.out.println("Item se encontra reservado para outra pessoa no momento.");
+            return false;
+        }
         //checar se limite de emprestimo foi atingido
         if(this.getEmprestimos().size() == 4){
             //throw exception

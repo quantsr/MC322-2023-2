@@ -77,6 +77,12 @@ public class Biblioteca {
     public void setEmprestimos(HashSet<Emprestimo> emprestimos) {
         this.emprestimos = emprestimos;
     }
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
     
     public boolean addMembro(int ID){
         for(Membro m : membrosBiblioteca){

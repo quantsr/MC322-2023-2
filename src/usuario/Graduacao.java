@@ -18,6 +18,17 @@ public class Graduacao extends Universidade {
     }
 
     public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
+        //checa se item esta reservado por outra pessoa
+        boolean reservaAutorizada = false;
+        for(Reserva r : library.getReservas()){
+            if(r.getDonoReserva().getId() == this.getId()){
+                reservaAutorizada = true;
+            }
+        }
+        if(!reservaAutorizada){
+            System.out.println("Item se encontra reservado para outra pessoa no momento.");
+            return false;
+        }
         //checar se limite de emprestimo foi atingido
         if(this.getEmprestimos().size() == 3){
             //throw exception
@@ -46,7 +57,6 @@ public class Graduacao extends Universidade {
         this.getEmprestimos().add(emprestimo);
         item.setDisponivel(false);
         return library.addEmprestimo(emprestimo);
-
     }
     
     public boolean makeReserva(ItemMultimidia item, Biblioteca library){
@@ -71,12 +81,9 @@ public class Graduacao extends Universidade {
             }
             else{
                 Reserva reserva = new Reserva(item, this, dataRetirada);
-                return library.addReserva(reserva);
-                
-
+                return library.addReserva(reserva);              
             }
-
         }
-        
     }
+
 }
