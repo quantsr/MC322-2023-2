@@ -62,6 +62,7 @@ public class Funcionario extends Membro{
         return library.addEmprestimo(emprestimo);
     }
 
+    @Override
     public boolean makeReserva(ItemMultimidia item, Biblioteca library){
         if(item.isDisponivel()){
             //throw exception
@@ -87,6 +88,26 @@ public class Funcionario extends Membro{
                 return library.addReserva(reserva);              
             }
         }
+    }
+
+    @Override
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+        if(!this.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            return false;
+        }
+        else if(!library.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" - Funcionario";
     }
     
 }

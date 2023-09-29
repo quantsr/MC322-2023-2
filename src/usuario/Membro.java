@@ -82,6 +82,10 @@ public class Membro {
         return true;
     }
 
+    public boolean makeReserva(ItemMultimidia item, Biblioteca library){
+        return true;
+    }
+
     public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
         return true;
     }

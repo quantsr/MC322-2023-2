@@ -61,6 +61,7 @@ public class Graduacao extends Universidade {
         return library.addEmprestimo(emprestimo);
     }
     
+    @Override
     public boolean makeReserva(ItemMultimidia item, Biblioteca library){
         if(item.isDisponivel()){
             //throw exception
@@ -87,7 +88,7 @@ public class Graduacao extends Universidade {
             }
         }
     }
-    
+
     @Override
     public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
         if(!this.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
@@ -101,6 +102,11 @@ public class Graduacao extends Universidade {
         else{
             return true;
         }
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" - Graduacao";
     }
 
 }
