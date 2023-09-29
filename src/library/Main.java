@@ -2,6 +2,8 @@ package library;
 import java.util.ArrayList;
 import java.util.HashMap;
 import usuario.*;
+import java.util.LinkedList;
+import java.time.LocalDate;
 
 
 
@@ -13,32 +15,19 @@ public class Main {
 		HashMap<Integer, ItemMultimidia> items = new HashMap<Integer, ItemMultimidia>();
 		ArrayList<Membro> membros = new ArrayList<Membro>();
 
-		for(int i = 0; i<10; i++){
-			membros.add(new Membro(i+100));
-		}
+		
 
 		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", items, membros);
 		
-		CD item0 = new CD(0, null, null, null, 0, null, null, null, false, 0, 0, 0, 0, false);
-		CD item1 = new CD(1, null, null, null, 0, null, null, null, false, 0, 0, 0, 0, false);
-		ItemBiblioteca<CD> i = new ItemBiblioteca<CD>();
+		Graduacao user1 = new Graduacao("Max", 241957, "Campinas-SP", "m241957@dac.unicamp.br", LocalDate.now(), new ArrayList<Multa>(), new LinkedList<Emprestimo>());
 
-		i.emprestarItem(item0);
-		//testing duplicate exception
-		i.emprestarItem(item0);
-		i.emprestarItem(item1);
-		i.reservarItem(item0);
-		//testing duplicate exception
-		i.reservarItem(item0);
-		for(CD item : i.getItensEmprestados()){
-			System.out.println("Lista antes de devolverItem => id:" + item.getId());
-		}
-		i.devolverItem(item0);
-		for(CD item : i.getItensEmprestados()){
-			System.out.println("Lista depois de devolverItem => id:" + item.getId());
-		}
-		i.devolverItem(item0);
+		System.out.println(user1);
 		
+		LivroFisico livro1 = new LivroFisico(0, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true);
+
+		user1.makeEmprestimo(livro1);
+		livro1.setCopias(livro1.getCopias()-1);
+		System.out.println(user1);
 	}
 
 }

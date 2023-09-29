@@ -77,8 +77,8 @@ public class Membro {
     public void setEmprestimos(List<Emprestimo> emprestimos) {
         this.emprestimos = emprestimos;
     }
-    
-    public void makeEmprestimo(Emprestimo emprestimo){
-        
+
+    public String toString(){
+        return getId()+" - "+getNome()+" - Multas: "+getMultas().size()+" - Emprestimos: "+getEmprestimos().size();
     }
 }
