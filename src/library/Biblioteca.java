@@ -1,4 +1,5 @@
 package library;
+import usuario.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -149,7 +150,7 @@ public class Biblioteca {
             {
                 reservas.remove(reserva);
                 return true;
-            } 
+            }
         }
         System.out.println("Reserva nao se encontra cadastrada na lista de reservas.");
         return false;
