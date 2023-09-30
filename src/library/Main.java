@@ -54,10 +54,10 @@ public class Main {
 		System.out.println();
 		
 		System.out.println("user2 faz emprestimo de livro1.");
+		System.out.println(user2);
 		if(user2.makeEmprestimo(livro1, biblioteca)){
 			livro1.setCopias(livro1.getCopias()-1);
 		}
-		System.out.println(user1);
 		System.out.println(user2);
 		System.out.println();
 
@@ -79,11 +79,22 @@ public class Main {
 		if(user2.makeEmprestimo(livro4, biblioteca)){
 			livro4.setCopias(livro4.getCopias()-1);
 		}
+		System.out.println(user2);
 		System.out.println();
 
 		System.out.println("Criando emprestimo inexistente");
+		System.out.println(user1);
 		user1.makeDevolucao(new Emprestimo(new LivroFisico(4, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true), dataAtrasada.minusDays(5), dataAtrasada, user1), biblioteca);
 		System.out.println(user1);
+		System.out.println();
+
+		System.out.println("Devolucao de item danificado");
+		System.out.println(user1);
+		Emprestimo emprestimoDanificado = user1.getEmprestimos().getFirst();
+		emprestimoDanificado.getItem().setConservado(false);
+		user1.makeDevolucao(emprestimoDanificado, biblioteca);
+		System.out.println(user1);
+		System.out.println();
 		
 		
 	

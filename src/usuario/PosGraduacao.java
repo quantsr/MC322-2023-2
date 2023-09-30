@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import exceptions.ExcecaoItemDanificado;
+import exceptions.ExcecaoItemNaoDisponivel;
+import exceptions.ExcecaoItemNaoEmprestado;
+import exceptions.ExcecaoLimiteEmprestimoExcedido;
+import exceptions.ExcecaoMultaPendente;
 import library.Biblioteca;
 import library.Emprestimo;
 import library.ItemMultimidia;
@@ -21,47 +26,54 @@ public class PosGraduacao extends Universidade{
     
     @Override
     public boolean makeEmprestimo(ItemMultimidia item, Biblioteca library){
-        //checa se item esta reservado por outra pessoa
-        boolean reservado = false;
-        for(Reserva r : library.getReservas()){
-            if(r.getItem().getId() == item.getId() && r.getDonoReserva().getId() != this.getId()){
-                reservado = true;
+        try {
+            //checa se item esta reservado por outra pessoa
+            boolean reservado = false;
+            for(Reserva r : library.getReservas()){
+                if(r.getItem().getId() == item.getId() && r.getDonoReserva().getId() != this.getId()){
+                    reservado = true;
+                }
             }
-        }
-        if(reservado){
-            System.out.println("Item se encontra reservado para outra pessoa no momento.");
-            return false;
-        }
-        //checar se limite de emprestimo foi atingido
-        if(this.getEmprestimos().size() == 5){
-            //throw exception
-            System.out.println("Limite de emprestimo excedido.");
-            return false;
-        }
-        //checar se item esta disponivel para emprestimo
-        if(!item.isDisponivel()){
-            //Throw exception in future
-            System.out.println("Item de ID "+item.getId()+" nao se encontra disponivel.");
-            return false;
-        }
-        //checar se tem multas pendentes
-        for(Multa m : this.getMultas()){
-            if(!m.isPago()){
-                //throw exception
-                System.out.println("O usuario possui uma ou mais multas pendentes.");
+            if(reservado){
+                System.out.println("Item se encontra reservado para outra pessoa no momento.");
                 return false;
             }
+            //checar se limite de emprestimo foi atingido
+            if(this.getEmprestimos().size() == 5){
+                throw new ExcecaoLimiteEmprestimoExcedido("Limite de emprestimo excedido.");
+            }
+            //checar se item esta disponivel para emprestimo
+            if(!item.isDisponivel()){
+                throw new ExcecaoItemNaoDisponivel("Item de id: "+item.getId()+", "+item.getTitulo()+", nao se encontra disponivel.");
+                
+            }
+            //checar se tem multas pendentes
+            for(Multa m : this.getMultas()){
+                if(!m.isPago()){
+                    throw new ExcecaoMultaPendente("O usuario possui uma ou mais multas pendentes.");
+                }
+            }
+            //realizar emprestimo
+            LocalDate dataEmprestimo = LocalDate.now();
+            LocalDate dataDevolucao = dataEmprestimo.plusDays(20);
+            
+            Emprestimo emprestimo = new Emprestimo(item, dataEmprestimo, dataDevolucao, this);
+            this.getEmprestimos().add(emprestimo);
+            item.setDisponivel(false);
+            return library.addEmprestimo(emprestimo);
+            
+        } catch (ExcecaoLimiteEmprestimoExcedido e) {
+            System.err.println("Erro ao fazer emprestimo: "+ e.getMessage());
+            return false;
+        } catch (ExcecaoItemNaoDisponivel e){
+            System.err.println("Erro ao fazer emprestimo: "+ e.getMessage());
+            return false;
+        } catch (ExcecaoMultaPendente e){
+            System.err.println("Erro ao fazer emprestimo: "+ e.getMessage());
+            return false;
         }
-        //realizar emprestimo
-        LocalDate dataEmprestimo = LocalDate.now();
-        LocalDate dataDevolucao = dataEmprestimo.plusDays(20);
-        
-        Emprestimo emprestimo = new Emprestimo(item, dataEmprestimo, dataDevolucao, this);
-        this.getEmprestimos().add(emprestimo);
-        item.setDisponivel(false);
-        return library.addEmprestimo(emprestimo);
     }
-
+    
     @Override
     public boolean makeReserva(ItemMultimidia item, Biblioteca library){
         if(item.isDisponivel()){
@@ -92,28 +104,46 @@ public class PosGraduacao extends Universidade{
 
     @Override
     public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
-        if(!this.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
-            System.out.println("Nao foi possivel realizar a devolucao do emprestimo. Item ID nao consta na lista de emprestimos do usuario");
-            return false;
-        }
-        else if(!library.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
-            System.out.println("Nao foi possivel realizar a devolucao do emprestimo. Item ID nao consta na lista de emprestimos da biblioteca");
-            return false;
-        }
-        else{
-            //calcula multa
-            LocalDate datadevolucao = emprestimo.getDataDevolucao();
-            LocalDate dataAtual = LocalDate.now();
-            Period periodo = Period.between(datadevolucao, dataAtual);
-            //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
-            if(periodo.getDays() > 0){
-                Membro donoMulta = this;
-                boolean multaIsPago = false; 
-                float valor = (float)periodo.getDays();
-                this.addMulta(new Multa(donoMulta, emprestimo, multaIsPago, valor));
+        try {
+            boolean hasEmprestimoMembro = false;
+            boolean hasEmprestimoBiblioteca = false;
+            for(Emprestimo e : this.getEmprestimos()){
+                if(e.getItem().getId() == emprestimo.getItem().getId()){
+                    hasEmprestimoMembro = true;
+                }
             }
-           
-            return true;
+            for(Emprestimo e : library.getEmprestimos()){
+                if(e.getItem().getId() == emprestimo.getItem().getId()){
+                    hasEmprestimoBiblioteca = true;
+                }
+            }
+            if(!hasEmprestimoMembro || !hasEmprestimoBiblioteca){
+                throw new ExcecaoItemNaoEmprestado("Item de ID: "+ emprestimo.getItem().getId()+", "+emprestimo.getItem().getTitulo()+", nao consta como emprestado pelo usuario.");
+            }
+            if(!emprestimo.getItem().isConservado()){
+                throw new ExcecaoItemDanificado("Item a ser devolvido se encontra danificado ou precisa de manutencao");
+            }
+            else{
+                //calcula multa
+                LocalDate datadevolucao = emprestimo.getDataDevolucao();
+                LocalDate dataAtual = LocalDate.now();
+                Period periodo = Period.between(datadevolucao, dataAtual);
+                //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
+                if(periodo.getDays() > 0){
+                    this.addMulta(new Multa(this, emprestimo,false, (float)periodo.getDays()));
+                }
+                this.getEmprestimos().remove(emprestimo);
+                library.getEmprestimos().remove(emprestimo);
+                emprestimo.getItem().setDisponivel(true);
+                return true;
+            }
+            
+        } catch (ExcecaoItemNaoEmprestado e) {
+            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
+            return false;
+        } catch (ExcecaoItemDanificado e) {
+            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
+            return false;
         }
     }
 
