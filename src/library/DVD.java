@@ -12,7 +12,7 @@ public class DVD extends ItemMultimidia{
     public DVD(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse, String capa,
             boolean disponivel, ArrayList<String> elenco, int duracao, int copias, int copiasDisponiveis,
             ArrayList<String> legendas_audios, boolean conservado) {
-        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel, conservado);
         this.elenco = elenco;
         this.duracao = duracao;
         this.copias = copias;

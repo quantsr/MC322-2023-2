@@ -8,8 +8,8 @@ public class CD extends ItemMultimidia{
     private boolean conservado;
     
     public CD(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse, String capa,
-            boolean disponivel, int faixas, int duracao, int copias, int copiasDisponiveis, boolean conservado) {
-        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+            boolean disponivel, boolean conservado, int faixas, int duracao, int copias, int copiasDisponiveis) {
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel, conservado);
         this.faixas = faixas;
         this.duracao = duracao;
         this.copias = copias;

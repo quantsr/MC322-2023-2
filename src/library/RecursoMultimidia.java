@@ -11,7 +11,7 @@ public class RecursoMultimidia extends ItemMultimidia {
     public RecursoMultimidia(int id, String titulo, String autor, String editora, int ano, String genero,
             String sinopse, String capa, boolean disponivel, String tipoRecurso, String formato, int copias,
             int copiasDisponiveis, String local, boolean conservado) {
-        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel, conservado);
         this.tipoRecurso = tipoRecurso;
         this.formato = formato;
         this.copias = copias;

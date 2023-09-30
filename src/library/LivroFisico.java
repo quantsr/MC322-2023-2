@@ -9,7 +9,7 @@ public class LivroFisico extends ItemMultimidia {
 
     public LivroFisico(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
             String capa, boolean disponivel, String isbn, int edicao, int copias, String local, boolean conservado) {
-        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel, conservado);
         this.isbn = isbn;
         this.edicao = edicao;
         this.copias = copias;

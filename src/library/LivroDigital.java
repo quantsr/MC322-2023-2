@@ -9,9 +9,9 @@ public class LivroDigital extends ItemMultimidia{
     private LocalDate disponibilidade;
     
     public LivroDigital(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
-            String capa, boolean disponivel, String formato, int qtdLicencas, String url, String requisito,
+            String capa, boolean disponivel, boolean conservado, String formato, int qtdLicencas, String url, String requisito,
             LocalDate disponibilidade) {
-        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel);
+        super(id, titulo, autor, editora, ano, genero, sinopse, capa, disponivel, conservado);
         this.formato = formato;
         this.qtdLicencas = qtdLicencas;
         this.url = url;

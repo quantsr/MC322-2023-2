@@ -11,11 +11,12 @@ public class ItemMultimidia {
     private String sinopse;
     private String capa;
     private boolean disponivel;
+    private boolean conservado;
     private ArrayList<Comentario> comentarios;
 
     
     public ItemMultimidia(int id, String titulo, String autor, String editora, int ano, String genero, String sinopse,
-            String capa, boolean disponivel) {
+            String capa, boolean disponivel, boolean conservado) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -25,12 +26,14 @@ public class ItemMultimidia {
         this.sinopse = sinopse;
         this.capa = capa;
         this.disponivel = disponivel;
+        this.conservado = conservado;
     }
     public ItemMultimidia(int ID){
         this.id = ID;
         this.titulo = this.autor = this.editora = this.genero = this.sinopse = this.capa = "";
         this.ano = 0;
         this.disponivel = true;
+        this.conservado = true;
     }
 
 
@@ -123,6 +126,14 @@ public class ItemMultimidia {
         this.disponivel = disponivel;
     }
 
+    public boolean isConservado() {
+        return conservado;
+    }
+
+
+    public void setConservado(boolean conservado) {
+        this.conservado = conservado;
+    }
     public void addComentario(Comentario comentario){
         this.comentarios.add(comentario);
     }

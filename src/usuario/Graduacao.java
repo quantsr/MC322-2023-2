@@ -111,6 +111,9 @@ public class Graduacao extends Universidade {
             if(!hasEmprestimoMembro || !hasEmprestimoBiblioteca){
                 throw new ExcecaoItemNaoEmprestado("Item de ID: "+ emprestimo.getItem().getId()+", "+emprestimo.getItem().getTitulo()+", nao consta como emprestado pelo usuario.");
             }
+            if(!emprestimo.getItem().isConservado()){
+                throw new ExcecaoItemDanificado("Item a ser devolvido se encontra danificado ou precisa de manutencao");
+            }
             else{
                 //calcula multa
                 LocalDate datadevolucao = emprestimo.getDataDevolucao();
@@ -127,6 +130,9 @@ public class Graduacao extends Universidade {
             }
             
         } catch (ExcecaoItemNaoEmprestado e) {
+            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
+            return false;
+        } catch (ExcecaoItemDanificado e) {
             System.err.println("Erro ao fazer devolucao: "+e.getMessage());
             return false;
         }
