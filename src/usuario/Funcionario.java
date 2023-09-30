@@ -87,8 +87,7 @@ public class Funcionario extends Membro{
             LocalDate dataRetirada = null;
             for(Emprestimo e : library.getEmprestimos()){
                 if(e.getItem().getId() == item.getId()){
-                    //data retirada nao pode ser a mesma que a data de devolucao para evitar conflitos
-                    dataRetirada = e.getDataDevolucao().plusDays(1);
+                    dataRetirada = e.getDataDevolucao().plusDays(20);
                 }
             }
             if(dataRetirada == null){
