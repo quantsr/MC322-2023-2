@@ -94,6 +94,11 @@ public class Membro {
         this.multas.add(m);
     }
 
+    public boolean Renovacao(Emprestimo emprestimo, Biblioteca library){
+        //to be implemented in child classes. DO NOT FORGET FUTURE-MAX
+        return true;
+    }
+
     public String toString(){
         int multaPaga = 0;
         for(Multa e : this.getMultas()){
