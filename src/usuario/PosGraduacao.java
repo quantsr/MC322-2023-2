@@ -4,18 +4,9 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
-import exceptions.ExcecaoItemDanificado;
-import exceptions.ExcecaoItemNaoDisponivel;
-import exceptions.ExcecaoItemNaoEmprestado;
-import exceptions.ExcecaoLimiteEmprestimoExcedido;
-import exceptions.ExcecaoMultaPendente;
-import library.Biblioteca;
-import library.Emprestimo;
-import library.ItemMultimidia;
-import library.Multa;
-import library.Reserva;
+import exceptions.*;
+import library.*;
 
 public class PosGraduacao extends Universidade{
 
