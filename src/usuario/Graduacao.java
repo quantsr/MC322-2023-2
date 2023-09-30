@@ -95,35 +95,40 @@ public class Graduacao extends Universidade {
 
     @Override
     public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
-        boolean hasEmprestimoMembro = false;
-        boolean hasEmprestimoBiblioteca = false;
-        for(Emprestimo e : this.getEmprestimos()){
-            if(e.getItem().getId() == emprestimo.getItem().getId()){
-                hasEmprestimoMembro = true;
+        try {
+            boolean hasEmprestimoMembro = false;
+            boolean hasEmprestimoBiblioteca = false;
+            for(Emprestimo e : this.getEmprestimos()){
+                if(e.getItem().getId() == emprestimo.getItem().getId()){
+                    hasEmprestimoMembro = true;
+                }
             }
-        }
-        for(Emprestimo e : library.getEmprestimos()){
-            if(e.getItem().getId() == emprestimo.getItem().getId()){
-                hasEmprestimoBiblioteca = true;
+            for(Emprestimo e : library.getEmprestimos()){
+                if(e.getItem().getId() == emprestimo.getItem().getId()){
+                    hasEmprestimoBiblioteca = true;
+                }
             }
-        }
-        if(!hasEmprestimoMembro || !hasEmprestimoBiblioteca){
-            System.out.println("Nao foi possivel realizar a devolucao do emprestimo. Item ID nao consta na lista de emprestimos do usuario ou biblioteca.");
+            if(!hasEmprestimoMembro || !hasEmprestimoBiblioteca){
+                throw new ExcecaoItemNaoEmprestado("Item de ID: "+ emprestimo.getItem().getId()+", "+emprestimo.getItem().getTitulo()+", nao consta como emprestado pelo usuario.");
+            }
+            else{
+                //calcula multa
+                LocalDate datadevolucao = emprestimo.getDataDevolucao();
+                LocalDate dataAtual = LocalDate.now();
+                Period periodo = Period.between(datadevolucao, dataAtual);
+                //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
+                if(periodo.getDays() > 0){
+                    this.addMulta(new Multa(this, emprestimo,false, (float)periodo.getDays()));
+                }
+                this.getEmprestimos().remove(emprestimo);
+                library.getEmprestimos().remove(emprestimo);
+                emprestimo.getItem().setDisponivel(true);
+                return true;
+            }
+            
+        } catch (ExcecaoItemNaoEmprestado e) {
+            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
             return false;
-        }
-        else{
-            //calcula multa
-            LocalDate datadevolucao = emprestimo.getDataDevolucao();
-            LocalDate dataAtual = LocalDate.now();
-            Period periodo = Period.between(datadevolucao, dataAtual);
-            //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
-            if(periodo.getDays() > 0){
-                this.addMulta(new Multa(this, emprestimo,false, (float)periodo.getDays()));
-            }
-            this.getEmprestimos().remove(emprestimo);
-            library.getEmprestimos().remove(emprestimo);
-            emprestimo.getItem().setDisponivel(true);
-            return true;
         }
     }
 

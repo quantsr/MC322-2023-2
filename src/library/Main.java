@@ -81,6 +81,9 @@ public class Main {
 		}
 		System.out.println();
 
+		System.out.println("Criando emprestimo inexistente");
+		user1.makeDevolucao(new Emprestimo(new LivroFisico(4, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true), dataAtrasada.minusDays(5), dataAtrasada, user1), biblioteca);
+		System.out.println(user1);
 		
 		
 	
