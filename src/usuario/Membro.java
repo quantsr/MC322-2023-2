@@ -90,6 +90,10 @@ public class Membro {
         return true;
     }
 
+    public void addMulta(Multa m){
+        this.multas.add(m);
+    }
+
     public String toString(){
         int multaPaga = 0;
         for(Multa e : this.getMultas()){

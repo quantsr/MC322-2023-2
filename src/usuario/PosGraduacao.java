@@ -1,6 +1,7 @@
 package usuario;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,14 +93,26 @@ public class PosGraduacao extends Universidade{
     @Override
     public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
         if(!this.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
-            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo. Item ID nao consta na lista de emprestimos do usuario");
             return false;
         }
         else if(!library.getEmprestimos().removeIf(i -> i.getItem().getId() == emprestimo.getItem().getId())){
-            System.out.println("Nao foi possivel realizar a devolucao do emprestimo.");
+            System.out.println("Nao foi possivel realizar a devolucao do emprestimo. Item ID nao consta na lista de emprestimos da biblioteca");
             return false;
         }
         else{
+            //calcula multa
+            LocalDate datadevolucao = emprestimo.getDataDevolucao();
+            LocalDate dataAtual = LocalDate.now();
+            Period periodo = Period.between(datadevolucao, dataAtual);
+            //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
+            if(periodo.getDays() > 0){
+                Membro donoMulta = this;
+                boolean multaIsPago = false; 
+                float valor = (float)periodo.getDays();
+                this.addMulta(new Multa(donoMulta, emprestimo, multaIsPago, valor));
+            }
+           
             return true;
         }
     }
