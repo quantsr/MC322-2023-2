@@ -9,7 +9,7 @@ import exceptions.*;
 import library.*;
 
 
-public class Funcionario extends Membro{
+public class Funcionario extends Universidade{
 
     public Funcionario(String nome, int id, String endereco, String contato, LocalDate dataRegistro,
             ArrayList<Multa> multas, LinkedList<Emprestimo> emprestimos) {

@@ -5,7 +5,6 @@ import java.util.HashSet;
 
 import usuario.*;
 import java.util.LinkedList;
-import java.util.List;
 import java.time.LocalDate;
 
 
