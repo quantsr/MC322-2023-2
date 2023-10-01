@@ -17,10 +17,14 @@ public class Biblioteca {
     private ArrayList<Membro> membrosBiblioteca;
     private HashSet<Emprestimo> emprestimos; 
     private LinkedList<Reserva> reservas;
-    private HashSet<Categoria> categorias; 
+    private HashSet<Categoria> categorias;
+    private ArrayList<Sala> salas;
+    private ArrayList<ReservaSala> reservasSala; 
+    
+    
     
     public Biblioteca(String nome, String fone, String email, String endereco, String cnpj,
-           HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca, HashSet<Emprestimo> emprestimos, LinkedList<Reserva> reservas, HashSet<Categoria> categorias) {
+           HashMap<Integer, ItemMultimidia> acervo, ArrayList<Membro> membrosBiblioteca, HashSet<Emprestimo> emprestimos, LinkedList<Reserva> reservas, HashSet<Categoria> categorias, ArrayList<Sala> salas, ArrayList<ReservaSala> reservasSala) {
         this.nome = nome;
         this.fone = fone;
         this.email = email;
@@ -31,6 +35,8 @@ public class Biblioteca {
         this.emprestimos = emprestimos;
         this.reservas = reservas;
         this.categorias = categorias;
+        this.salas = salas;
+        this.reservasSala = reservasSala;
     }
     public String getNome() {
         return nome;
@@ -86,7 +92,19 @@ public class Biblioteca {
     public void setReservas(LinkedList<Reserva> reservas) {
         this.reservas = reservas;
     }
-    
+    public ArrayList<Sala> getSalas() {
+        return salas;
+    }
+    public void setSalas(ArrayList<Sala> salas) {
+        this.salas = salas;
+    }
+    public ArrayList<ReservaSala> getReservasSala() {
+        return reservasSala;
+    }
+    public void setReservasSala(ArrayList<ReservaSala> reservasSala) {
+        this.reservasSala = reservasSala;
+    }
+
     public boolean addMembro(int ID){
         for(Membro m : membrosBiblioteca){
             if(m.getId() == ID){
@@ -200,4 +218,24 @@ public class Biblioteca {
     public boolean hasCategoria(Categoria categoria){
         return categorias.contains(categoria);
     }
+    public void addSala(Sala sala){
+        this.salas.add(sala);
+    }
+    public boolean removeSala(int id){
+        return salas.removeIf(i -> i.getId() == id);
+    }
+    public String listSala(){
+        String str = "";
+        for(Recursos sala: salas){
+            str += "Id: " + sala.getId()+"\n";
+        }
+        return str;
+    }
+    public void addReservaSala(ReservaSala sala){
+        this.reservasSala.add(sala);
+    }
+    public void removeReservaSala(ReservaSala sala){
+        this.reservasSala.removeIf(i -> i.getId() == sala.getId());
+    }
+
 }

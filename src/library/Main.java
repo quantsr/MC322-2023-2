@@ -5,7 +5,14 @@ import java.util.HashSet;
 
 import usuario.*;
 import java.util.LinkedList;
+
+
+import exceptions.ExcecaoItemDanificado;
+
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 
@@ -19,8 +26,10 @@ public class Main {
 		HashSet<Emprestimo> emprestimos = new HashSet<Emprestimo>();
 		LinkedList<Reserva> reservas = new LinkedList<Reserva>();
 		HashSet<Categoria> categorias = new HashSet<Categoria>();
+		ArrayList<Sala> salas = new ArrayList<Sala>();
+		ArrayList<ReservaSala> reservasSala = new ArrayList<ReservaSala>();
 		
-		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", acervo, membros, emprestimos, reservas, categorias);
+		Biblioteca biblioteca = new Biblioteca("Biblioteca Central Zila Mamede", "(84) 3342-2260", "secretaria@bczm.ufrn.br", "CEP 59078-900, Natal RN", "63.942.522/0001-22", acervo, membros, emprestimos, reservas, categorias,salas, reservasSala);
 		LivroFisico livro1 = new LivroFisico(0, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true);
 		LivroFisico livro2 = new LivroFisico(1, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true);
 		LivroFisico livro3 = new LivroFisico(2, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true);
@@ -62,38 +71,65 @@ public class Main {
 
 		
 		Emprestimo emprestimo = user1.getEmprestimos().get(0);
-
-		System.out.println("Adicionando multa para user2.");
-		//criando lista de emprestimo com Emprestimo atrasado
+		
 		LocalDate dataAtrasada = LocalDate.now().minusDays(5);
-		LinkedList<Emprestimo> emprestimoLista = new LinkedList<Emprestimo>();
-		Emprestimo emprestimoAtrasado = new Emprestimo(livro4, dataAtrasada.minusDays(10), dataAtrasada, user1);
-		emprestimoLista.add(emprestimoAtrasado);
-		user2.setEmprestimos(emprestimoLista);
-		biblioteca.addEmprestimo(emprestimoAtrasado);
-		emprestimo = user2.getEmprestimos().get(0);
-		user2.makeDevolucao(emprestimo, biblioteca);
-		System.out.println(user2);
-		System.out.println("user2 faz emprestimo de livro4.");
-		if(user2.makeEmprestimo(livro4, biblioteca)){
-			livro4.setCopias(livro4.getCopias()-1);
+		try{
+			System.out.println("Adicionando multa para user2.");
+			//criando lista de emprestimo com Emprestimo atrasado
+			LinkedList<Emprestimo> emprestimoLista = new LinkedList<Emprestimo>();
+			Emprestimo emprestimoAtrasado = new Emprestimo(livro4, dataAtrasada.minusDays(10), dataAtrasada, user1);
+			emprestimoLista.add(emprestimoAtrasado);
+			user2.setEmprestimos(emprestimoLista);
+			biblioteca.addEmprestimo(emprestimoAtrasado);
+			emprestimo = user2.getEmprestimos().get(0);
+			user2.makeDevolucao(emprestimo, biblioteca);
+			System.out.println(user2);
+			System.out.println("user2 faz emprestimo de livro4.");
+			if(user2.makeEmprestimo(livro4, biblioteca)){
+				livro4.setCopias(livro4.getCopias()-1);
+			}
+			System.out.println(user2);
+			System.out.println();
+		} catch (ExcecaoItemDanificado e){
+			System.err.println("Erro ao fazer devolucao: " + e.getMessage());
 		}
-		System.out.println(user2);
-		System.out.println();
 
-		System.out.println("Criando emprestimo inexistente");
-		System.out.println(user1);
-		user1.makeDevolucao(new Emprestimo(new LivroFisico(4, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true), dataAtrasada.minusDays(5), dataAtrasada, user1), biblioteca);
-		System.out.println(user1);
-		System.out.println();
+		try{
+			System.out.println("Criando emprestimo inexistente");
+			System.out.println(user1);
+			user1.makeDevolucao(new Emprestimo(new LivroFisico(4, "Java for Dummies", "Oracle", "Oracle", 1993, "Fantasia", null, null, true, "978-85-333-0227-3", 1, 10, "A5", true), dataAtrasada.minusDays(5), dataAtrasada, user1), biblioteca);
+			System.out.println(user1);
+			System.out.println();
 
-		System.out.println("Devolucao de item danificado");
-		System.out.println(user1);
-		Emprestimo emprestimoDanificado = user1.getEmprestimos().getFirst();
-		emprestimoDanificado.getItem().setConservado(false);
-		user1.makeDevolucao(emprestimoDanificado, biblioteca);
-		System.out.println(user1);
-		System.out.println();
+		} catch (ExcecaoItemDanificado e){
+			System.err.println("Erro ao fazer devolucao: " + e.getMessage());
+		}
+
+		try {
+			System.out.println("Devolucao de item danificado");
+			System.out.println(user1);
+			Emprestimo emprestimoDanificado = user1.getEmprestimos().getFirst();
+			emprestimoDanificado.getItem().setConservado(false);
+			user1.makeDevolucao(emprestimoDanificado, biblioteca);
+			System.out.println(user1);
+			System.out.println();
+		} catch (ExcecaoItemDanificado e){
+			System.err.println("Erro ao fazer devolucao: " + e.getMessage());
+		}
+		
+		//criando uma sala
+	
+		
+		
+
+
+	
+		LocalDateTime hora = LocalDateTime.now().with(LocalTime.of(8, 27));
+	
+		
+	
+		
+
 		
 		
 	

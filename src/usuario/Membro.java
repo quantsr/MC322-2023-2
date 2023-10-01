@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import exceptions.ExcecaoCapacidadeExcedida;
+import exceptions.ExcecaoItemDanificado;
+import exceptions.ExcecaoSalaReservada;
+
 public class Membro {
     private String nome;
     private int id;
@@ -85,7 +89,59 @@ public class Membro {
         return true;
     }
 
-    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+    public boolean makeReserva(ReservaSala sala, int qtdPessoas, Biblioteca library){
+        boolean hasReserva = false;
+        for(ReservaSala s : library.getReservasSala()){
+            if(s.getId() == sala.getId()){
+                hasReserva = true;
+                //throw exception
+                System.out.println("Reserva ja se encontra cadastrada");
+                return false;
+            }    
+        }
+        if(!hasReserva){
+            //checa se inicio das reservas infringe ReservaSala sala
+            boolean conflitoHorario = false;
+            for(ReservaSala i : library.getReservasSala()){
+                if(i.getHoraInicio().compareTo(sala.getHoraInicio())== 1 && i.getHoraInicio().compareTo(sala.getHoraFim())== -1){
+                    conflitoHorario = true;
+                }
+                //checa se final das reservas infringe ReservaSala sala
+                if(i.getHoraFim().compareTo(sala.getHoraInicio())== 1 && i.getHoraFim().compareTo(sala.getHoraFim())== -1){
+                    conflitoHorario = true;
+                }
+            }
+            try{
+                if(conflitoHorario){
+                    throw new ExcecaoSalaReservada("Sala ja se encontra reservada neste horario.");
+                }else{
+                    //checa limite de sala
+                    try{
+                        if(qtdPessoas > sala.getSala().getCapacidadeMax()){
+                            throw new ExcecaoCapacidadeExcedida("Capacidade maxima ultrapassada.");
+                        }else{
+                            library.addReservaSala(sala);
+                            return true;
+                        }
+                    }catch (ExcecaoCapacidadeExcedida e){
+                        System.err.println("Erro ao reservar sala: "+ e.getMessage());
+                        return false;
+                    }
+                    
+                }
+            }catch (ExcecaoSalaReservada e){
+                System.err.println("Erro ao reservar sala: "+ e.getMessage());
+                return false;
+            }
+
+        }else{
+            //throw exception
+            System.out.println("Reserva ja se encontra cadastrada.");
+            return false;
+        }
+    }
+    
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library) throws ExcecaoItemDanificado{
         return true;
     }
 

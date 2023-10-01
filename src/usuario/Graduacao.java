@@ -93,7 +93,7 @@ public class Graduacao extends Universidade {
     }
 
     @Override
-    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library) throws ExcecaoItemDanificado{
         try {
             boolean hasEmprestimoMembro = false;
             boolean hasEmprestimoBiblioteca = false;
@@ -129,9 +129,6 @@ public class Graduacao extends Universidade {
             }
             
         } catch (ExcecaoItemNaoEmprestado e) {
-            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
-            return false;
-        } catch (ExcecaoItemDanificado e) {
             System.err.println("Erro ao fazer devolucao: "+e.getMessage());
             return false;
         }

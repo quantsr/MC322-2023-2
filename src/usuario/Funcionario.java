@@ -95,7 +95,7 @@ public class Funcionario extends Universidade{
     }
 
     @Override
-    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library){
+    public boolean makeDevolucao(Emprestimo emprestimo, Biblioteca library) throws ExcecaoItemDanificado{
         try {
             boolean hasEmprestimoMembro = false;
             boolean hasEmprestimoBiblioteca = false;
@@ -122,7 +122,7 @@ public class Funcionario extends Universidade{
                 Period periodo = Period.between(datadevolucao, dataAtual);
                 //negativo(antes do tempo), positivo(multa) ou zero(no limite do prazo)
                 if(periodo.getDays() > 0){
-                    this.addMulta(new Multa(this, emprestimo,false, (float)(periodo.getDays()*0.75)));
+                    this.addMulta(new Multa(this, emprestimo,false, (float)periodo.getDays()));
                 }
                 this.getEmprestimos().remove(emprestimo);
                 library.getEmprestimos().remove(emprestimo);
@@ -131,9 +131,6 @@ public class Funcionario extends Universidade{
             }
             
         } catch (ExcecaoItemNaoEmprestado e) {
-            System.err.println("Erro ao fazer devolucao: "+e.getMessage());
-            return false;
-        } catch (ExcecaoItemDanificado e) {
             System.err.println("Erro ao fazer devolucao: "+e.getMessage());
             return false;
         }
