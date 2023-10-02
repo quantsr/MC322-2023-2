@@ -33,8 +33,6 @@ public class Administrador extends Funcionario{
         }
         
     }
-    public void addItem(Biblioteca library){
-        //escolhe que tipo de item
-    }
+    
     
 }
