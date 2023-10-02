@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
+
+import exceptions.ExcecaoIdExistente;
 
 
 public class Biblioteca {
@@ -140,14 +143,91 @@ public class Biblioteca {
 
     public boolean addItem(int ID){
         ItemMultimidia consulta = acervo.get(ID);
-        if(consulta != null){
-            System.out.println("O livro de ID "+ID+" ja se encontra no acervo. operacao abortada.");
+        try {
+            if(consulta != null){
+                throw new ExcecaoIdExistente("Item de ID existente.");
+            }else{
+                Scanner input = new Scanner(System.in);
+
+                System.out.println("ID:");
+                int id = (input.nextInt());
+
+                System.out.println("Titulo:");
+                String titulo = (input.nextLine());
+
+                System.out.println("Autor:");
+                String autor = (input.nextLine());
+
+                System.out.println("Editora:");
+                String editora = (input.nextLine());
+
+                System.out.println("Ano:");
+                int ano = (input.nextInt());
+                
+                System.out.println("Genero:");
+                String genero = (input.nextLine());
+
+                System.out.println("Sinopse:");
+                String sinopse = (input.nextLine());
+
+                System.out.println("Disponivel Y/N:");
+                boolean disponivel = false;
+                if(input.nextLine() == "Y" || input.nextLine() == "y"){
+                    disponivel = true;
+                }else if(input.nextLine() == "N" || input.nextLine() == "n"){
+                    disponivel = false;
+                }
+
+                System.out.println("1: Livro fisico\n2: Livro Digital\n3: CD de audio\n4: DVD de video\n5: Outro Recurso Multimidia");
+                int itemTipo = input.nextInt();
+                
+                switch(itemTipo){
+                    case 1:
+                        System.out.println("ISBN: ");
+                        String isbn = input.nextLine();
+
+                        System.out.println("Edicao: ");
+                        int edicao = input.nextInt();
+
+                        System.out.println("Numero total de copias por edicao: ");
+                        int copias = input.nextInt();
+                        
+                        System.out.println("Localizacao na biblioteca: ");
+                        String local = input.nextLine();
+
+                        System.out.println("Estado de Conservacao: ");
+                        System.out.println("Disponivel Y/N:");
+                        boolean conservado = false;
+                        if(input.nextLine() == "Y" || input.nextLine() == "y"){
+                            conservado = true;
+                        }else if(input.nextLine() == "N" || input.nextLine() == "n"){
+                            conservado = false;
+                        }
+                        ItemMultimidia item = new LivroFisico(id, titulo, autor, editora, ano, genero, sinopse, "", disponivel, isbn, edicao, copias, local, conservado);
+                        this.acervo.put(id, item);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        break;    
+                }
+                
+                acervo.put(ID, new ItemMultimidia(ID));
+                System.out.println("Item de ID "+ID+" cadastrado com sucesso.");
+                input.close();
+                return true;
+            }
+        } catch (ExcecaoIdExistente e) {
+            System.err.println("Erro ao cadastrar item:"+ e.getMessage());
             return false;
-        }else{
-            acervo.put(ID, new ItemMultimidia(ID));
-            System.out.println("Item de ID "+ID+" cadastrado com sucesso.");
-            return true;
         }
+        
     }
     public boolean removeItem(int ID){
         ItemMultimidia consulta = acervo.remove(ID);

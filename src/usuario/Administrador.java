@@ -21,16 +21,20 @@ public class Administrador extends Funcionario{
 
     public void addItem(ItemMultimidia item, Biblioteca library){
         //checar se Biblioteca ja possui item com mesmo ID
-        for(Map.Entry<Integer,ItemMultimidia> set : library.getAcervo().entrySet()){
-            try {
-                if(set.getValue().getId() == item.getId()){
-                    throw new ExcecaoIdExistente("Item de id: "+ item.getId()+ ", ja se encontra cadastrado no acervo.");
-                }
-            } catch (ExcecaoIdExistente e) {
-                System.err.println("Erro ao cadastrar item: "+ e.getMessage());
+        
+        try {
+            if(library.getAcervo().get(item.getId()) != null){
+                throw new ExcecaoIdExistente("Item de id: "+ item.getId()+ ", ja se encontra cadastrado no acervo.");
+            }else{
+                library.addItem(item.getId());        
             }
+        } catch (ExcecaoIdExistente e) {
+            System.err.println("Erro ao cadastrar item: "+ e.getMessage());
         }
         
+    }
+    public void addItem(Biblioteca library){
+        //escolhe que tipo de item
     }
     
 }
