@@ -3,8 +3,12 @@ package usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 
+import exceptions.ExcecaoIdExistente;
+import library.Biblioteca;
 import library.Emprestimo;
+import library.ItemMultimidia;
 import library.Multa;
 
 public class Atendente extends Funcionario{

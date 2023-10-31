@@ -5,6 +5,7 @@ public class Comentario {
     int itemId;
     String texto;
     
+    
     public Comentario(int membroId, int itemId, String texto) {
         this.membroId = membroId;
         this.itemId = itemId;

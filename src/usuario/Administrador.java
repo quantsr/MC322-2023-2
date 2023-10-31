@@ -18,7 +18,7 @@ public class Administrador extends Funcionario{
         super(nome, id, endereco, contato, dataRegistro, multas, emprestimos);
         
     }
-
+    
     public void addItem(ItemMultimidia item, Biblioteca library){
         //checar se Biblioteca ja possui item com mesmo ID
         
