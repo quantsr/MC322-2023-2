@@ -36,8 +36,12 @@ public class Main {
 		Membro user1 = new Graduacao("Max", 241957, "Campinas-SP", "m241957@dac.unicamp.br", LocalDate.now(), new ArrayList<Multa>(), new LinkedList<Emprestimo>());
 		Membro user2 = new Graduacao("Joao Pedro", 237668, "Campinas-SP", "j237668@dac.unicamp.br", LocalDate.now(), new ArrayList<Multa>(), new LinkedList<Emprestimo>());
 		
-		CReflection.ListaMetodosMembro();
-		CReflection.ListaMetodosMultimidia();
+		System.out.println("Listando metodos de ItemMultimidia: \n");
+		CReflection.listaMetodosClasse(livro1);
+		System.out.println("Listando metodos de Membro: \n");
+		CReflection.listaMetodosClasse(user1);
+		System.out.println("Listando Atributos de ItemMultimidia: \n");
+		CReflection.listaAttClasse(livro4);
 	
 		}
 
