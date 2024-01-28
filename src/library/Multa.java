@@ -1,8 +1,10 @@
 package library;
+import usuario.Membro;
+
 
 public class Multa {
-    private Membro usuario;  //composição
-    private Emprestimo emprestimoRelacionado; //associação
+    private Membro usuario;  
+    private Emprestimo emprestimoRelacionado; 
     private boolean pago;
     private float valor;
 

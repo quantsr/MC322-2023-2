@@ -1,19 +1,21 @@
 package library;
+import usuario.*;
 
 import java.time.LocalDate;
 
 public class Emprestimo {
-    private ItemMultimidia item; //associação
-    private LocalDate dataEmprestimo; //composição
-    private LocalDate dataDevolucao;  //composição
-    private Membro usuario; //associação
+    private ItemMultimidia item;
+    private LocalDate dataEmprestimo; 
+    private LocalDate dataDevolucao;  
+    private Membro usuario; 
 
-    
     public Emprestimo(ItemMultimidia item, LocalDate dataEmprestimo, LocalDate dataDevolucao, Membro usuario) {
         this.item = item;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.usuario = usuario;
+
+        
     }
     public ItemMultimidia getItem() {
         return item;
